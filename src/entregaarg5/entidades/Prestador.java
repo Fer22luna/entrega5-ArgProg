@@ -3,119 +3,52 @@ package entregaarg5.entidades;
 
 import java.util.Date;
 import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
-
+@Entity
 public class Prestador {
 
+    @Id
+    @GeneratedValue( strategy = GenerationType.IDENTITY)
     private String id;
+    @Column
     private String nombreCompleto;
+    @Temporal(TemporalType.TIMESTAMP)
     private Date fechaNacimiento;
+    @Column
     private String numeroDocumento;
-    private String cuit;
-    private Contacto contacto;
-    private Disponibilidad disponibilidad;
+    @Column
     private String zonaCobertura;
+    @OneToMany
     private List<String> experiencias;
+    @OneToMany
     private List<String> fotosURL;
+    
+    @OneToOne(mappedBy="prestador", fetch = FetchType.LAZY)
+    private Contrato contrato;
 
     public Prestador() {
     }
 
-    public Prestador(String id, String nombreCompleto, Date fechaNacimiento, String numeroDocumento, String cuit, Contacto contacto, Disponibilidad disponibilidad, String zonaCobertura, List<String> experiencias, List<String> fotosURL) {
+    public Prestador(String id, String nombreCompleto, Date fechaNacimiento, String numeroDocumento, String cuit, String zonaCobertura, List<String> experiencias, List<String> fotosURL) {
         this.id = id;
         this.nombreCompleto = nombreCompleto;
         this.fechaNacimiento = fechaNacimiento;
         this.numeroDocumento = numeroDocumento;
-        this.cuit = cuit;
-        this.contacto = contacto;
-        this.disponibilidad = disponibilidad;
         this.zonaCobertura = zonaCobertura;
         this.experiencias = experiencias;
         this.fotosURL = fotosURL;
     }
 
-    public String getId() {
-        return id;
-    }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getNombreCompleto() {
-        return nombreCompleto;
-    }
-
-    public void setNombreCompleto(String nombreCompleto) {
-        this.nombreCompleto = nombreCompleto;
-    }
-
-    public Date getFechaNacimiento() {
-        return fechaNacimiento;
-    }
-
-    public void setFechaNacimiento(Date fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
-    }
-
-    public String getNumeroDocumento() {
-        return numeroDocumento;
-    }
-
-    public void setNumeroDocumento(String numeroDocumento) {
-        this.numeroDocumento = numeroDocumento;
-    }
-
-    public String getCuit() {
-        return cuit;
-    }
-
-    public void setCuit(String cuit) {
-        this.cuit = cuit;
-    }
-
-    public Contacto getContacto() {
-        return contacto;
-    }
-
-    public void setContacto(Contacto contacto) {
-        this.contacto = contacto;
-    }
-
-    public Disponibilidad getDisponibilidad() {
-        return disponibilidad;
-    }
-
-    public void setDisponibilidad(Disponibilidad disponibilidad) {
-        this.disponibilidad = disponibilidad;
-    }
-
-    public String getZonaCobertura() {
-        return zonaCobertura;
-    }
-
-    public void setZonaCobertura(String zonaCobertura) {
-        this.zonaCobertura = zonaCobertura;
-    }
-
-    public List<String> getExperiencias() {
-        return experiencias;
-    }
-
-    public void setExperiencias(List<String> experiencias) {
-        this.experiencias = experiencias;
-    }
-
-    public List<String> getFotosURL() {
-        return fotosURL;
-    }
-
-    public void setFotosURL(List<String> fotosURL) {
-        this.fotosURL = fotosURL;
-    }
-    
-    
-    
-    
 
 }
